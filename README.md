@@ -24,7 +24,7 @@
     Erstellen der Methoden dbInit, read und write in der Klasse AccoundHolder
 
 ## Praktikum 3
-    Persitierung und JUnit (fast analog ui jetzigem P3)
+    Persitierung und JUnit (fast analog zu jetzigem P3)
 ### Aufgabe 1
     Verbesserung der Persistiertung.
         - Übergabe des Dateinamen im Konstruktor
