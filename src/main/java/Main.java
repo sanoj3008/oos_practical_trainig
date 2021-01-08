@@ -1,9 +1,7 @@
 import bank_account.AccountHolder;
-import bank_account.Payment;
-import bank_account.Transaction;
+import bank_structure.Payment;
+import bank_structure.Transaction;
 import exceptions.TransactionDoesExistException;
-
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws TransactionDoesExistException {

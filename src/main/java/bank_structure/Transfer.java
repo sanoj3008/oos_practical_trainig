@@ -1,4 +1,4 @@
-package bank_account;
+package bank_structure;
 
 public class Transfer extends Transaction {
     private String sender;

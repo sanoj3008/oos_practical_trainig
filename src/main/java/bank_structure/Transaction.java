@@ -1,4 +1,4 @@
-package bank_account;
+package bank_structure;
 
 public abstract class Transaction implements CalculateBill {
     protected int date;

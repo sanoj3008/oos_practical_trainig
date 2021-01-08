@@ -1,4 +1,4 @@
-package bank_account;
+package bank_structure;
 
 import exceptions.TransactionDoesExistException;
 import exceptions.TransactionDoesNotExistException;

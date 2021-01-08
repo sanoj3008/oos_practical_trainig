@@ -1,4 +1,4 @@
-package bank_account;
+package bank_structure;
 
 public class Payment extends Transaction {
     private double incomingInterest;

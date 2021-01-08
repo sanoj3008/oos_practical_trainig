@@ -1,5 +1,8 @@
 package bank_account;
 
+import bank_structure.Account;
+import bank_structure.Payment;
+import bank_structure.Transaction;
 import exceptions.TransactionDoesExistException;
 import exceptions.TransactionDoesNotExistException;
 
