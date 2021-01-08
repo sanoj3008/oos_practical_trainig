@@ -4,6 +4,7 @@ import exceptions.TransactionDoesExistException;
 import exceptions.TransactionDoesNotExistException;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class AccountHolder implements Account {
     private String holder;
@@ -55,12 +56,28 @@ public class AccountHolder implements Account {
         Transaction lastTransaction = this.transactions.get(cnt);
         if(res < 0 && lastTransaction.calculate() > 0) {
             double overdraft = res * overdraftInterest;
-            Payment overdraftPayment = new Payment("20200101", overdraft, "overdraft", 0, 0);
+            Payment overdraftPayment = new Payment("08.01.2021", overdraft, "overdraft", 0, 0);
             this.transactions.add(overdraftPayment);
             res += overdraft;
         }
 
         res += lastTransaction.calculate();
-        return res;
+        return Math.round(res * 100.0) / 100.0;
+    }
+
+    @Override
+    public ArrayList<Transaction> getTransactionsSorted(boolean asc) {
+        ArrayList<Transaction> sortedList = new ArrayList<>(this.transactions);
+        if(asc) sortedList.sort((t1, t2) -> (int) (t1.calculate()*100 - t2.calculate()*100));
+        else sortedList.sort((t1, t2) -> (int) (t2.calculate() - t1.calculate()));
+        return sortedList;
+    }
+
+    @Override
+    public ArrayList<Transaction> getTransactionsByType(boolean positiv) {
+        ArrayList<Transaction> filtered = new ArrayList<>(this.transactions);
+        if(positiv) filtered.removeIf(t -> t.calculate() >= 0);
+        else filtered.removeIf(t -> t.calculate() < 0);
+        return filtered;
     }
 }

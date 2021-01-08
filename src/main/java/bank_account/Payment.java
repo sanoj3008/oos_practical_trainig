@@ -12,11 +12,13 @@ public class Payment extends Transaction {
 
     @Override
     public double calculate() {
+        double result = 0;
         if(this.amount > 0) {
-            return this.amount - (this.amount * this.incomingInterest);
+            result =  this.amount - (this.amount * this.incomingInterest);
         } else {
-            return this.amount + (this.amount * this.outgoingInterest);
+           result =  this.amount + (this.amount * this.outgoingInterest);
         }
+        return Math.round(result * 100.0) / 100.0;
     }
 
     @Override

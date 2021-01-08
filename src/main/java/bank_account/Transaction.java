@@ -14,8 +14,8 @@ public abstract class Transaction implements CalculateBill {
     private int createDate(String date) throws IllegalArgumentException {
         int result;
         try {
-            String[] dateArray = date.split(".");
-            result = Integer.parseInt(dateArray[2]) + Integer.parseInt(dateArray[1]) + Integer.parseInt(dateArray[0]);
+            String[] dateArray = date.split("\\.");
+            result = Integer.parseInt(dateArray[2]) * 10000 + Integer.parseInt(dateArray[1]) * 100 + Integer.parseInt(dateArray[0]);
             if (result <= 9999999) throw new IllegalArgumentException();
         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
             e.printStackTrace();

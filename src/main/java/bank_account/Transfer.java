@@ -12,7 +12,7 @@ public class Transfer extends Transaction {
 
     @Override
     public double calculate() {
-        return this.amount;
+        return Math.round(this.amount * 100.0) / 100.0;
     }
 
     @Override
