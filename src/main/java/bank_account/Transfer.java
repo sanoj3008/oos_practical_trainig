@@ -1,10 +1,10 @@
-package BankAccount;
+package bank_account;
 
 public class Transfer extends Transaction {
     private String sender;
     private String recipient;
 
-    public Transfer(int date, double amount, String desc, String sender, String recipient) {
+    public Transfer(String date, double amount, String desc, String sender, String recipient) {
         super(date, amount, desc);
         this.sender = sender;
         this.recipient = recipient;
@@ -35,6 +35,6 @@ public class Transfer extends Transaction {
 
     @Override
     protected Transaction clone() {
-        return new Transfer(this.date, this.amount, this.getDescription(), this.sender, this.recipient);
+        return new Transfer(this.getDate(), this.amount, this.getDescription(), this.sender, this.recipient);
     }
 }

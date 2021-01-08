@@ -1,14 +1,27 @@
-package BankAccount;
+package bank_account;
 
 public abstract class Transaction implements CalculateBill {
     protected int date;
     protected double amount;
     private String description;
 
-    public Transaction(int date, double amount, String desc) {
-        this.date = date;
+    public Transaction(String date, double amount, String desc) throws IllegalArgumentException {
+        this.date = createDate(date);
         this.amount = amount;
         this.description = desc;
+    }
+
+    private int createDate(String date) throws IllegalArgumentException {
+        int result;
+        try {
+            String[] dateArray = date.split(".");
+            result = Integer.parseInt(dateArray[2]) + Integer.parseInt(dateArray[1]) + Integer.parseInt(dateArray[0]);
+            if (result <= 9999999) throw new IllegalArgumentException();
+        } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("date is malformed");
+        }
+        return result;
     }
 
     public double getAmount() {

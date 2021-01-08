@@ -1,10 +1,10 @@
-package BankAccount;
+package bank_account;
 
 public class Payment extends Transaction {
     private double incomingInterest;
     private double outgoingInterest;
 
-    public Payment(int date, double amount, String desc, double incoming, double outgoing) {
+    public Payment(String date, double amount, String desc, double incoming, double outgoing) {
         super(date, amount, desc);
         this.incomingInterest = incoming;
         this.outgoingInterest = outgoing;
@@ -28,6 +28,6 @@ public class Payment extends Transaction {
 
     @Override
     protected Transaction clone() {
-        return new Payment(this.date, this.amount, this.getDescription(), this.incomingInterest, this.outgoingInterest);
+        return new Payment(this.getDate(), this.amount, this.getDescription(), this.incomingInterest, this.outgoingInterest);
     }
 }

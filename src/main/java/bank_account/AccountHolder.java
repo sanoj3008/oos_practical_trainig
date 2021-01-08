@@ -1,11 +1,13 @@
-package BankAccount;
+package bank_account;
+
+import exceptions.TransactionDoesExistException;
+import exceptions.TransactionDoesNotExistException;
 
 import java.util.ArrayList;
 
 public class AccountHolder implements Account {
     private String holder;
     private ArrayList<Transaction> transactions;
-    private final String OVERDRAFT_INTEREST_DESC = "overdraft";
 
     public AccountHolder(String holder) {
         this.holder = holder;
@@ -17,21 +19,21 @@ public class AccountHolder implements Account {
     }
 
     @Override
-    public void addTransaction(Transaction transaction) {
+    public void addTransaction(Transaction transaction) throws TransactionDoesExistException {
         if(!this.containsTransaction(transaction)) {
             this.transactions.add(transaction);
             this.calculateAccountBalance();
         } else {
-
+            throw new TransactionDoesExistException();
         }
     }
 
-    public void removeTransaction(Transaction transaction) {
+    public void removeTransaction(Transaction transaction) throws TransactionDoesNotExistException {
         if(this.containsTransaction(transaction)) {
             this.transactions.remove(transaction);
             this.calculateAccountBalance();
         } else {
-
+            throw new TransactionDoesNotExistException();
         }
     }
 
@@ -53,7 +55,7 @@ public class AccountHolder implements Account {
         Transaction lastTransaction = this.transactions.get(cnt);
         if(res < 0 && lastTransaction.calculate() > 0) {
             double overdraft = res * overdraftInterest;
-            Payment overdraftPayment = new Payment(20200101, overdraft, OVERDRAFT_INTEREST_DESC, 0, 0);
+            Payment overdraftPayment = new Payment("20200101", overdraft, "overdraft", 0, 0);
             this.transactions.add(overdraftPayment);
             res += overdraft;
         }
