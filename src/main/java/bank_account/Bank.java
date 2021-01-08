@@ -4,24 +4,26 @@ import exceptions.TransactionDoesExistException;
 import exceptions.TransactionDoesNotExistException;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
-public class AccountHolder implements Account {
-    private String holder;
+public class Bank implements Account {
+    private double incomingInterest;
+    private double outgoingInterest;
     private ArrayList<Transaction> transactions;
 
-    public AccountHolder(String holder) {
-        this.holder = holder;
+    public Bank(double incoming, double outgoing) {
+        this.incomingInterest = incoming;
+        this.outgoingInterest = outgoing;
         this.transactions = new ArrayList<>();
-    }
-
-    public ArrayList<Transaction> getTransactions() {
-        return this.transactions;
     }
 
     @Override
     public void addTransaction(Transaction transaction) throws TransactionDoesExistException {
         if(!this.containsTransaction(transaction)) {
+            if(transaction instanceof Payment) {
+                Payment payment = (Payment) transaction;
+                payment.setIncomingInterest(this.incomingInterest);
+                payment.setOutgoingInterest(this.outgoingInterest);
+            }
             this.transactions.add(transaction);
             this.calculateAccountBalance();
         } else {
@@ -44,6 +46,7 @@ public class AccountHolder implements Account {
         return this.transactions.contains(transaction);
     }
 
+    @Override
     public double calculateAccountBalance() {
         double overdraftInterest = 0.15;
 
@@ -63,7 +66,7 @@ public class AccountHolder implements Account {
         }
 
         res += lastTransaction.calculate();
-        return Math.round(res * 100.0) / 100.0;
+        return Math.round(res * 100.0) / 100.0; // nur zwei Nachkommastellen
     }
 
     @Override
@@ -75,9 +78,9 @@ public class AccountHolder implements Account {
     }
 
     @Override
-    public ArrayList<Transaction> getTransactionsByType(boolean positiv) {
+    public ArrayList<Transaction> getTransactionsByType(boolean positive) {
         ArrayList<Transaction> filtered = new ArrayList<>(this.transactions);
-        if(positiv) filtered.removeIf(t -> t.calculate() >= 0);
+        if(positive) filtered.removeIf(t -> t.calculate() >= 0);
         else filtered.removeIf(t -> t.calculate() < 0);
         return filtered;
     }

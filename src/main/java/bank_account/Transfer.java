@@ -10,9 +10,17 @@ public class Transfer extends Transaction {
         this.recipient = recipient;
     }
 
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public void setRecipient(String recipient) {
+        this.recipient = recipient;
+    }
+
     @Override
     public double calculate() {
-        return Math.round(this.amount * 100.0) / 100.0;
+        return Math.round(this.amount * 100.0) / 100.0; // nur zwei Nachkommastellen
     }
 
     @Override

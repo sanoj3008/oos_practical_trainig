@@ -4,9 +4,22 @@ public class Payment extends Transaction {
     private double incomingInterest;
     private double outgoingInterest;
 
+    // Der Nutzer kenn die Zinsen nicht -> er benötigt einen Konstruktor, der dies berücksichtigt
+    public Payment(String date, double amount, String desc) {
+        super(date, amount, desc);
+    }
+
     public Payment(String date, double amount, String desc, double incoming, double outgoing) {
         super(date, amount, desc);
         this.incomingInterest = incoming;
+        this.outgoingInterest = outgoing;
+    }
+
+    public void setIncomingInterest(double incoming) {
+        this.incomingInterest = incoming;
+    }
+
+    public void setOutgoingInterest(double outgoing) {
         this.outgoingInterest = outgoing;
     }
 
@@ -18,7 +31,7 @@ public class Payment extends Transaction {
         } else {
            result =  this.amount + (this.amount * this.outgoingInterest);
         }
-        return Math.round(result * 100.0) / 100.0;
+        return Math.round(result * 100.0) / 100.0; // nur zwei Nachkommastellen
     }
 
     @Override
