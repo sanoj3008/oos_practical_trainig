@@ -9,9 +9,12 @@ import java.util.ArrayList;
 import bank_structure.Transaction;
 
 public class Serializer<T extends Transaction> {
+    private Class<T> type;
     GsonBuilder gsonBuilder;
 
-    public Serializer() {
+    public Serializer(Class<T> type) {
+        this.type = type;
+
         this.gsonBuilder = new GsonBuilder();
         this.gsonBuilder.registerTypeHierarchyAdapter(Transaction.class, new TransactionAdapter());
     }
@@ -27,7 +30,7 @@ public class Serializer<T extends Transaction> {
         JSONArray array = new JSONArray(input);
         ArrayList<T> result = new ArrayList<>();
         for(Object elem: array) {
-            result.add((T) gson.fromJson(elem.toString(), Transaction.class));
+            result.add((T) gson.fromJson(elem.toString(), type));
         }
         return result;
     }
