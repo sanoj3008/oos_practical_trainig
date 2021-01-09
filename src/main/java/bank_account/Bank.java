@@ -9,6 +9,7 @@ import exceptions.TransactionDoesNotExistException;
 import java.util.ArrayList;
 
 public class Bank implements Account {
+    private String accountId;
     private double incomingInterest;
     private double outgoingInterest;
     private ArrayList<Transaction> transactions;
@@ -17,6 +18,10 @@ public class Bank implements Account {
         this.incomingInterest = incoming;
         this.outgoingInterest = outgoing;
         this.transactions = new ArrayList<>();
+    }
+
+    public boolean containsTransaction(Transaction transaction) {
+        return this.transactions.contains(transaction);
     }
 
     @Override
@@ -45,12 +50,8 @@ public class Bank implements Account {
     }
 
     @Override
-    public boolean containsTransaction(Transaction transaction) {
-        return this.transactions.contains(transaction);
-    }
-
-    @Override
     public double calculateAccountBalance() {
+        // sort list
         double overdraftInterest = 0.15;
 
         double res = 0;
@@ -86,5 +87,17 @@ public class Bank implements Account {
         if(positive) filtered.removeIf(t -> t.calculate() >= 0);
         else filtered.removeIf(t -> t.calculate() < 0);
         return filtered;
+    }
+
+    @Override
+    public void login(String accountId) {
+        this.accountId = accountId;
+        // read file with id
+    }
+
+    @Override
+    public void logout() {
+        this.transactions = null;
+        this.accountId = null;
     }
 }
