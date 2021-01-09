@@ -20,12 +20,10 @@ public class Main {
         }
         System.out.println(accountHolder.calculateAccountBalance());
         Serializer<Transaction> seriallizer = new Serializer<>();
-        ArrayList<JsonElement> elements = new ArrayList<>();
-        for(Transaction trans: accountHolder.getTransactionsSorted(true)) {
-            elements.add(seriallizer.serialize(trans));
-        }
-        for(JsonElement elem: elements) {
-            System.out.println(seriallizer.deserialize(elem, Transaction.class).getClass());
+        JsonElement elements = seriallizer.serialize(accountHolder.getTransactionsSorted(true));
+        System.out.println(elements);
+        for(Transaction elem: seriallizer.deserialize(elements.toString())) {
+            System.out.println(elem.getClass() + " - " + elem.getDescription() + "+ " + elem.getAmount() + " + " + elem.calculate());
         }
     }
 }
