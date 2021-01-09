@@ -33,13 +33,15 @@
      read und write implementieren.
 
 ## Praktikum 4
-    Persistierung, Server
+    Persistierung, Lambda, Server
 ### Aufgabe 1
     Umsetzung der Persistiertung.
         - Erstellen der Klasse Serializer (mit Generics)
         - in der Login Methode wird nach einer vorhandenen Datei gesucht, ansonsten wird diese neu erstellt.
         - add und remove rufen write auf.
 ### Aufgabe 2
+    die beiden fehlenden Implementationen (filter und sort) werden implementiert
+### Aufgabe 3
     Aufsetzen der Bank als Server (man könnte auch eine eigene Version der Bank zur Verfügung stellen. Das wäre dann etwas leichter)
 
 ## Praktikum 5
