@@ -7,13 +7,12 @@
     Gemeinsamkeiten in abstrakte Oberklasse auslagern
     toString, equals und clone überladen / überschreiben
     calculateMethode in Interface definieren und NUR in den Klassen Payment und Transfer implementieren (hier die Unterschiede beachten)
-
 ### Aufgabe 2
     Erstellen der Klassen Bank und AccountHolder, welche erst einmal nur die Transaktionen aggregieren (in Form einer PUBLIC ArrayList).
     Erstellen einer main Methode, die ein Objekt vom Typ Bank erzeugt und auf die ArrayList zugreift, um diese mit verschiedenen Transaktionen (Payment und Transfer) zu bestücken.
-    Exceptions
+    
 ## Praktikum 2
-    Einführung von JavaDoc, Bank wird erweitert, Beginn der Persistierung
+    Einführung von JavaDoc, Bank wird erweitert, Exceptions
 ### Aufgabe 1
     JavaDoc
 ### Aufgabe 2
@@ -42,7 +41,6 @@
         - add und remove rufen write auf.
 ### Aufgabe 2
     Aufsetzen der Bank als Server (man könnte auch eine eigene Version der Bank zur Verfügung stellen. Das wäre dann etwas leichter)
-
 
 ## Praktikum 5
     AccountHolder und Bank werden miteinander verknüpft
