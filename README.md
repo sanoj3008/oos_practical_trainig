@@ -9,35 +9,46 @@
     calculateMethode in Interface definieren und NUR in den Klassen Payment und Transfer implementieren (hier die Unterschiede beachten)
 
 ### Aufgabe 2
-    Erstellen der Klasse AccountHolder, welche erst einmal nur die Transaktionen aggregiert (in Form einer PUBLIC ArrayList)
-    Erstellen einer main Methode, die ein Objekt vom Typ AccountHolder erzeugt und auf die ArrayList zugreift, um diese mit verschiedenen Transaktionen (Payment und Transfer) zu bestücken.
-
+    Erstellen der Klassen Bank und AccountHolder, welche erst einmal nur die Transaktionen aggregieren (in Form einer PUBLIC ArrayList).
+    Erstellen einer main Methode, die ein Objekt vom Typ Bank erzeugt und auf die ArrayList zugreift, um diese mit verschiedenen Transaktionen (Payment und Transfer) zu bestücken.
+    Exceptions
 ## Praktikum 2
-    Einführung von JavaDoc, AccountHolder wird erweitert, Beginn der Persistierung
+    Einführung von JavaDoc, Bank wird erweitert, Beginn der Persistierung
 ### Aufgabe 1
     JavaDoc
 ### Aufgabe 2
-    ArrayList in AccountHolder ist nun private
-    Zugriff wird über die, im Interface Account definierten Methoden gehandhabt.
-    calculateAccountBalance implementieren, um den Kontostand einzusehen (Überziehungszinsen mit berechnen).
+    ArrayList in AccountHolder und Bank ist nun private und beide Klassen implememntieren nun das Interface Account.
+    Implementierung der Methoden nur in der Klasse Bank zunächst. (außer der Methoden, welche Lambdas verwenden)
 ### Aufgabe 3
-    Erstellen der Methoden dbInit, read und write in der Klasse AccoundHolder
+    Sinnvolle Exceptions für add und remove.
+    Außerdem eine Überprüfung des Datumformats.
 
 ## Praktikum 3
-    Persitierung und JUnit (fast analog zu jetzigem P3)
+    Persitierung und JUnit
 ### Aufgabe 1
-    Verbesserung der Persistiertung.
-        - Übergabe des Dateinamen im Konstruktor
-        - Im Kunstruktor eine neue Datei erzeugen, falls es zu dem Namen noch keine Datei gibt
-### Aufgabe 2
     JUnit Tests
         - Testen der einzelnen Klassen (mit toString, clone, und equals)
         - Testen der AccountHolder Klasse (insbesondere der Methoden des Interfaces)
         - Unterschied zwischen der Persitierung mit und ohne dbInit.
+### Aufgabe 2
+     read und write implementieren.
 
 ## Praktikum 4
-    GUI (Analog zu jetzigem P4)
-    Welche Fenster nötig sind, müsste man noch überlegen
+    Persistierung, Server
+### Aufgabe 1
+    Umsetzung der Persistiertung.
+        - Erstellen der Klasse Serializer (mit Generics)
+        - in der Login Methode wird nach einer vorhandenen Datei gesucht, ansonsten wird diese neu erstellt.
+        - add und remove rufen write auf.
+### Aufgabe 2
+    Aufsetzen der Bank als Server (man könnte auch eine eigene Version der Bank zur Verfügung stellen. Das wäre dann etwas leichter)
+
 
 ## Praktikum 5
-    Verknüpfung von P3 und P4 (Analog zu jetzigem P5)
+    AccountHolder und Bank werden miteinander verknüpft
+### Aufgabe 1
+    Implementierung der Methoden in der Klasse AccountHolder
+### Aufgabe 2
+    Handling in der Klasse umsetzen (z.B. auch, ob eine Überweisung vom Konto weg, oder zum Konto hin geht).
+### Aufgabe 3
+    Sinnvolle main, welche die Kommunikation deutlich macht 
