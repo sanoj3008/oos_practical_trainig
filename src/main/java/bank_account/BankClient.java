@@ -6,16 +6,11 @@ import exceptions.TransactionDoesNotExistException;
 
 import java.util.ArrayList;
 
-public class AccountHolder implements Account {
+public class BankClient implements Account {
     private String accountId;
-    private ArrayList<Transaction> transactions;
 
-    public AccountHolder(String id) {
+    public BankClient(String id) {
         this.accountId = id;
-    }
-
-    public void getTransactions() {
-        // make a request and init your transaction list
     }
 
     public void login() {
@@ -26,7 +21,6 @@ public class AccountHolder implements Account {
     public void login(String accountId) {
         try {
             // request server
-            this.getTransactions();
         } catch (Exception e) {
 
         }
@@ -35,7 +29,6 @@ public class AccountHolder implements Account {
     @Override
     public void logout() {
         // request server
-        this.transactions = null;
     }
 
     @Override
@@ -44,9 +37,6 @@ public class AccountHolder implements Account {
             // request server to add a transaction
         } catch (Exception e) {
             // display error if transaction already exists
-        } finally {
-            // request server to receive all transactions
-            this.getTransactions();
         }
     }
 
@@ -56,9 +46,6 @@ public class AccountHolder implements Account {
             // request server to remove a transaction
         } catch (Exception e) {
             // display error if transaction does not exist
-        } finally {
-            // request server to receive all transactions
-            this.getTransactions();
         }
     }
 

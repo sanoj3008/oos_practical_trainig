@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import bank_structure.Transaction;
 
-public class Serializer<T extends Transaction> {
+public class Serializer<T> {
     private Class<T> type;
     GsonBuilder gsonBuilder;
 
@@ -16,7 +16,7 @@ public class Serializer<T extends Transaction> {
         this.type = type;
 
         this.gsonBuilder = new GsonBuilder();
-        this.gsonBuilder.registerTypeHierarchyAdapter(Transaction.class, new TransactionAdapter());
+        this.gsonBuilder.registerTypeHierarchyAdapter(this.type, new TransactionAdapter());
     }
 
     public JsonElement serialize(ArrayList<T> input) {
@@ -24,7 +24,7 @@ public class Serializer<T extends Transaction> {
         return gson.toJsonTree(input);
     }
 
-    // that is nott the best practice, but i do not know no a better way :-\
+    // that is not the best practice, but i do not know no a better way :-\
     public ArrayList<T> deserialize(String input) {
         Gson gson = this.gsonBuilder.create();
         JSONArray array = new JSONArray(input);

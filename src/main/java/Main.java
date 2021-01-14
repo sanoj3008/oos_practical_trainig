@@ -16,8 +16,8 @@ public class Main {
         Bank accountHolder = new Bank(0.12, 0.10);
         try {
             accountHolder.login("jonas");
-            /*accountHolder.addTransaction(new Payment("15.1.2021", -150.5, "Abheben", 0.015, 0.01));
-            accountHolder.addTransaction(new Payment("02.02.2021", 150.5, "Einzahlen", 0.015, 0.01));
+            accountHolder.addTransaction(new Payment("14.1.2021", -150.5, "Abheben", 0.015, 0.01));
+            /*accountHolder.addTransaction(new Payment("02.02.2021", 150.5, "Einzahlen", 0.015, 0.01));
             accountHolder.addTransaction(new Payment("12.12.2020", 150.5, "Einzahlen", 0.015, 0.01));
             accountHolder.addTransaction(new Transfer("09.01.2021", 120, "Überweisung", "Jonas", "Timo"));*/
 //            accountHolder.removeTransaction(new Transfer("09.01.2021", 120, "Überweisung", "Jonas", "Timo"));
