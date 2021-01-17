@@ -6,6 +6,7 @@ import bank_structure.Transaction;
 import exceptions.TransactionDoesExistException;
 import exceptions.TransactionDoesNotExistException;
 import helpers.Serializer;
+import helpers.TransactionAdapter;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -31,7 +32,7 @@ public class Bank implements Account {
     }
 
     private void readFile() throws IOException {
-        Serializer<Transaction> serializer = new Serializer<>(Transaction.class);
+        Serializer<Transaction, TransactionAdapter> serializer = new Serializer<>(Transaction.class, new TransactionAdapter());
         BufferedReader file = new BufferedReader(new FileReader(this.accountId + ".json"));
         String fileContent = file.readLine();
         file.close();
@@ -39,7 +40,7 @@ public class Bank implements Account {
     }
 
     private void writeFile() throws IOException {
-        Serializer<Transaction> serializer = new Serializer<>(Transaction.class);
+        Serializer<Transaction, TransactionAdapter> serializer = new Serializer<>(Transaction.class, new TransactionAdapter());
         FileWriter file = new FileWriter(accountId + ".json");
         file.write(serializer.serialize(this.transactions).toString());
         file.close();

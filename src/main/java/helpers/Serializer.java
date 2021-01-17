@@ -3,20 +3,23 @@ package helpers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonSerializer;
 import org.json.*;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import bank_structure.Transaction;
 
-public class Serializer<T> {
+public class Serializer<T, R> {
     private Class<T> type;
     GsonBuilder gsonBuilder;
 
-    public Serializer(Class<T> type) {
+    public Serializer(Class<T> type, R adapter) {
         this.type = type;
-
         this.gsonBuilder = new GsonBuilder();
-        this.gsonBuilder.registerTypeHierarchyAdapter(this.type, new TransactionAdapter());
+        this.gsonBuilder.registerTypeHierarchyAdapter(this.type, adapter);
     }
 
     public JsonElement serialize(ArrayList<T> input) {
